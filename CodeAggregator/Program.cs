@@ -42,6 +42,7 @@ namespace CodeAggregator
                 ".git", 
                 ".vs", 
                 "dist", 
+                ".nuxt",
                 "build", 
                 "wwwroot/lib", 
                 "wwwroot/dist" ,
