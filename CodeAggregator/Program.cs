@@ -43,6 +43,7 @@ namespace CodeAggregator
                 ".vs", 
                 "dist", 
                 ".nuxt",
+                "fonts",
                 "build", 
                 "wwwroot/lib", 
                 "wwwroot/dist" ,
