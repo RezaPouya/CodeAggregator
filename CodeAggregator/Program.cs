@@ -27,6 +27,8 @@ namespace CodeAggregator
             // Directories to exclude
             var excludedDirectories = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
+                "data-transfer",
+
                 // دات نت و ASP.NET Core
                 "bin",
                 "obj",
@@ -52,6 +54,9 @@ namespace CodeAggregator
                 ".vscode",
                 ".azuredevops",
                 ".gitlab",
+
+                ".cr",
+                ".idea",
                 
                 // داکیومنت و تست
                 "docs",
@@ -66,7 +71,7 @@ namespace CodeAggregator
                 "Migration",
                 "Migrations",
                 "commands_migrations",
-                "Data/Migrations",
+                "Data\\Migrations",
                 
                 // سیستم‌عامل و IDE
                 ".vsconfig",
@@ -74,13 +79,13 @@ namespace CodeAggregator
                 ".vssscc",
                 
                 // وب‌سایت
-                "wwwroot/lib",
-                "wwwroot/dist",
-                "wwwroot/fonts",
-                "wwwroot/css",
-                "wwwroot/js",
-                "wwwroot/images",
-                "wwwroot/webfonts",
+                "wwwroot\\lib",
+                "wwwroot\\dist",
+                "wwwroot\\fonts",
+                "wwwroot\\css",
+                "wwwroot\\js",
+                "wwwroot\\images",
+                "wwwroot\\webfonts",
                 
                 // ابزارها
                 ".editorconfig",
@@ -93,7 +98,7 @@ namespace CodeAggregator
                 "docker",
                 "helm",
                 "k8s",
-                "infrastructure"
+                //"infrastructure"
             };
 
             // File name patterns to exclude
@@ -222,6 +227,7 @@ namespace CodeAggregator
             if (!allFiles.Any())
             {
                 Console.WriteLine("No matching files found.");
+                Console.ReadLine();
                 return;
             }
 
@@ -268,6 +274,7 @@ namespace CodeAggregator
 
             Console.WriteLine("\n⚠️  Note: If the file is very large (more than a few MB), DeepSeek may not process it entirely.");
             Console.WriteLine("💡 To reduce size, remove less important extensions or add more excluded folders.");
+            Console.ReadLine();
         }
 
         private static void ShowStatistics(List<(string RelativePath, string Content, long Size)> files)
@@ -324,7 +331,8 @@ namespace CodeAggregator
                 bool shouldSkipDir = false;
                 foreach (var excludedDir in excludedDirectories)
                 {
-                    if (currentDir.Contains(excludedDir, StringComparison.OrdinalIgnoreCase))
+                    string currentDirName = Path.GetFileName(currentDir);
+                    if (excludedDirectories.Contains(currentDirName, StringComparer.OrdinalIgnoreCase))
                     {
                         shouldSkipDir = true;
                         break;
