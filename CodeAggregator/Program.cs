@@ -98,6 +98,7 @@ namespace CodeAggregator
                 "docker",
                 "helm",
                 "k8s",
+                "Content"
                 //"infrastructure"
             };
 
