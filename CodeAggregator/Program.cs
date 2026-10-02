@@ -28,6 +28,8 @@ namespace CodeAggregator
             var excludedDirectories = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
             {
                 "data-transfer",
+                "data\\seed",
+                "seed",
 
                 // دات نت و ASP.NET Core
                 "bin",
